@@ -20,11 +20,12 @@ int get_data(const char* filename, char** data) {
         return -1;
     }
 
-    *data = malloc(size);
+    *data = malloc(size + 1);
     if (*data == NULL) {
         printf("Failed to allocate memory!\n");
         return -1;
     }
+    (*data)[size] = '\0';
 
     size_t bytes_read = fread(*data, sizeof(char), size, fp);
     if (size != bytes_read) {
